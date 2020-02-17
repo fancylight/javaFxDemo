@@ -42,6 +42,10 @@ public class TankEvent extends AbstractFxEventOp<Tank> {
                    tank_p1.down();
                    break;
                }
+               case "J" : {
+                   tank_p1.fire();
+                   break;
+               }
            }
         });
     }
