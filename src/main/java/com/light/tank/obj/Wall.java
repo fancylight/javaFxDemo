@@ -1,4 +1,4 @@
-package com.light.wall;
+package com.light.tank.obj;
 
 
 import com.light.base.Position;
