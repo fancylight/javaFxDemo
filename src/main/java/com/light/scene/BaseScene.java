@@ -28,7 +28,7 @@ public  class BaseScene extends Canvas {
     private Scene parentScene;
     private Map<String, Method> fxEventMap;
     private Set<BaseObj> set;
-    private int duration = 100;
+    private int duration = 10;
     private KeyFrame keyFrame;
     private Timeline timeline;
     private Set<EventOp> eventOps;
@@ -55,6 +55,10 @@ public  class BaseScene extends Canvas {
         set.add(baseObj);
         baseObj.getFxEventOps().forEach(this::updateEvent);
     }
+    public void removeBaseObj(BaseObj baseObj){
+        set.remove(baseObj);
+    }
+
 
     /**
      * 添加事件

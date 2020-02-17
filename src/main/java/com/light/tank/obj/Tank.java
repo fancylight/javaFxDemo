@@ -28,38 +28,60 @@ public class Tank extends AbstractBaseObj {
 
     public void left() {
         double change= this.position.getX()- AppTank.minUnit;
+        if(!turn(TankFactory.p1_left)){
+            return;
+        }
         if (change >=0 && change <= App.width ) {
-            Image image = new TankFactory().createTankImage(TankFactory.p1_left);
-            this.setImage(image);
             this.position.setX(change);
         }
     }
     public void right() {
         double change= this.position.getX() + AppTank.minUnit;
+        if(!turn(TankFactory.p1_right)){
+            return;
+        }
         if (change >=0 && change <= (App.width-this.position.getWidth()) ) {
-            Image image = new TankFactory().createTankImage(TankFactory.p1_right);
-            this.setImage(image);
             this.position.setX(change);
         }
     }
     public void up() {
         double change= this.position.getY() - AppTank.minUnit;
+        if(!turn(TankFactory.p1_up)){
+            return;
+        }
         if (change >=0 && change <= App.height ) {
-            Image image = new TankFactory().createTankImage(TankFactory.p1_up);
-            this.setImage(image);
             this.position.setY(change);
         }
     }
     public void down() {
         double change= this.position.getY() + AppTank.minUnit;
+        if(!turn(TankFactory.p1_down)){
+            return;
+        }
         if (change >=0 && change <=( App.height-this.getPosition().getHeight()) ) {
-            Image image = new TankFactory().createTankImage(TankFactory.p1_down);
-            this.setImage(image);
             this.position.setY(change);
         }
     }
     public void fire() {
-
+        double x = this.position.getX()+10;
+        double y = this.position.getY();
+        Bullet bullet = new Bullet(new TankFactory().createTankImage(TankFactory.p2_up), new Position(x, y, 10, 10), "up");
+        App.currentBaseScene.addBaseObj(bullet);
+        bullet.go();
     }
+
+
+    //转向
+    private boolean turn(String direction){
+        String currentUrl = this.getImage().getUrl();
+        Image image = new TankFactory().createTankImage(direction);
+        String newUrl = image.getUrl();
+        this.setImage(image);
+        if(currentUrl.equals(newUrl)){
+            return true;
+        }
+        return false;
+    }
+
 
 }
